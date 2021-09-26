@@ -31,11 +31,11 @@ const LoginScreen = ({navigation}) => {
                 />
                 <Button
                     title="Login"
-                    onPress={() => navigation.replace('')}
+                    onPress={() => navigation.navigate('MainHome')}
                     />
         <View>
         <Text>Don't have an account?</Text>
-        <TouchableOpacity onPress={() => navigation.replace('register')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Register')}>
           <Text>Create Account</Text>
         </TouchableOpacity>
         </View>

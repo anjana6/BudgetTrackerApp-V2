@@ -4,7 +4,7 @@ import {Text,Button,Input} from 'react-native-elements';
 import AuthLayout from '../Layouts/AuthLayout';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const RegisterScreen = () => {
+const RegisterScreen = ({navigation}) => {
     return (
         <View style={styles.container}>
             <AuthLayout>
@@ -46,7 +46,7 @@ const RegisterScreen = () => {
         />
         <View>
         <Text>Already have an account</Text>
-        <TouchableOpacity onPress={() => navigation.replace('login')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
           <Text>Login</Text>
         </TouchableOpacity>
         </View>
