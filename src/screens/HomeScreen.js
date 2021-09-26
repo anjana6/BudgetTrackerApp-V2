@@ -7,15 +7,15 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 const HomeScreen = ({navigation}) => {
     return (
         <HomeLayout title="Home" navigation={navigation}>
-            <View style={styles.container}>
             <View>
-                <Text>Balance</Text>
-                <Text h3>70000</Text>
-                <Image
-                source={{ uri: "https://wallpaperaccess.com/full/317501.jpg" }}
-                style={{ width: 200, height: 200 }}
-                />
-            </View>
+                <View style={styles.homeHead}>
+                    <Text>Balance</Text>
+                    <Text h3>70000</Text>
+                    <Image
+                    source={{ uri: "https://wallpaperaccess.com/full/317501.jpg" }}
+                    style={{ width: 150, height: 150 }}
+                    />
+                </View>
             <View>
             <TouchableOpacity onPress={() => navigation.navigate('BudgetView',{
                 budget: 'Income',
@@ -31,11 +31,11 @@ const HomeScreen = ({navigation}) => {
                     
                 </Card.Title>
                 <Card.Divider/>
-                <Text h4>50,000</Text>
+                <Text h4 style={styles.currency}>50,000</Text>
                 </Card>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('BudgetView',{
-                budget: 'Expence',
+                budget: 'Expense',
             })}>
                 <Card>
                 <Card.Title><Icon 
@@ -45,15 +45,17 @@ const HomeScreen = ({navigation}) => {
                     />
                     <Text h4>EXPENCE</Text></Card.Title>
                 <Card.Divider/>
-                <Text h4>10,000</Text>
+                <Text h4 style={styles.currency}>10,000</Text>
                 </Card>
                </TouchableOpacity> 
             </View>
+            <View style={styles.button}>
             <Button
                 icon={<Icon name='plus' color='#ffffff' />}
                 title='ADD' 
                 onPress={() => navigation.navigate('BudgetAddingScreen')}
             />
+            </View>
         </View>
         </HomeLayout>
     )
@@ -68,5 +70,15 @@ const styles = StyleSheet.create({
     //   alignItems: 'center',
     //   justifyContent: 'center',
     },
+    homeHead: {
+        alignItems: 'center'
+    },
+    button: {
+        marginVertical: 10,
+        marginHorizontal:10
+    },
+    currency: {
+        textAlign: 'center'
+    }
   });
   

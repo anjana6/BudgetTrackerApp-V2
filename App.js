@@ -11,6 +11,7 @@ import CategorySetttingScreen from './src/screens/CategorySetttingScreen';
 import BudgetViewScreen from './src/screens/BudgetViewScreen';
 import BudgetCategoryItemScreen from './src/screens/BudgetCategoryItemScreen';
 import BudgetCategoryDetailsScreen from './src/screens/BudgetCategoryDetailsScreen';
+import BudgetAddingScreens from './src/screens/BudgetAddingScreens';
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -18,7 +19,7 @@ const Stack = createStackNavigator();
 const TabScreen = () => {
   return(
     <Tab.Navigator>
-      <Tab.Screen name="NestedHome" component={NestedHomeScreens} />
+      <Tab.Screen name="Home" component={NestedHomeScreens} />
       <Tab.Screen name="Settings" component={CategorySetttingScreen} />
     </Tab.Navigator>
     // <Tab.Navigator>
@@ -31,11 +32,11 @@ const TabScreen = () => {
 const NestedHomeScreens = () => {
   return(
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }}/>
+      <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false }}/>
       <Stack.Screen name="BudgetView" component={BudgetViewScreen} options={{ headerShown: false }}/>
       <Stack.Screen name="BudgetCategoryItem" component={BudgetCategoryItemScreen} options={{ headerShown: false }}/>
       <Stack.Screen name="BudgetCategoryDetails" component={BudgetCategoryDetailsScreen} options={{ headerShown: false }}/>
-      {/* <Stack.Screen name="BudgetAddingScreen" component={BudgetAddingScreen} options={{headerShown:false}}/> */}
+      <Stack.Screen name="BudgetAddingScreen" component={BudgetAddingScreens} options={{headerShown:false}}/>
       
       
       
