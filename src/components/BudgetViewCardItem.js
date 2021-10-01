@@ -2,7 +2,7 @@ import React from 'react';
 import {Text,Avatar,Badge,Card} from 'react-native-elements';
 import {View,StyleSheet} from 'react-native';
 
-const BudgetViewCardItem = () => {
+const BudgetViewCardItem = ({name}) => {
     return (
             <>
         {/* <View style={tailwind('flex-row justify-between items-center border-2 border-gray-500 border-opacity-25 p-1 my-1' )}>
@@ -30,11 +30,10 @@ const BudgetViewCardItem = () => {
                 containerStyle={{backgroundColor:"#36BF59",marginRight: 2}}
                 
                 />
-                <Text h4>Food</Text>
-                <Badge value="2" status="primary" />
+                <Text h4>{name}</Text>
             </View>
             <View>
-                <Text h4>5,000</Text>
+                <Text >View</Text>
             </View>    
         </View>
         </>
@@ -51,7 +50,7 @@ const styles = StyleSheet.create({
         justifyContent:'space-between',
         alignItems:'center',
         padding: 5,
-        marginVertical: 20,
+        marginVertical: 10,
         marginHorizontal: 10,
         borderWidth: 1,
         borderRadius: 5

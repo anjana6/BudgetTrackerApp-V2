@@ -1,57 +1,67 @@
-import React from 'react';
-import {View,StyleSheet} from 'react-native';
+import React,{useEffect, useState} from 'react';
+import {View,StyleSheet,Button} from 'react-native';
 import { Avatar,Text } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import CategoryModal from '../components/CategoryModal';
+import CategoryItem from '../components/CategoryItem';
+import categoryService from '../services/categoryService';
 
 const IncomeCategoryScreen = () => {
+    const [modalVisible, setModalVisible] = useState(false);
+    const [categories,setCategories] = useState([]);
+    const [categoryId,setCategoryId] = useState(null);
+    const [categoryName,setCategoryName] = useState(null);
+
+    useEffect(() => {
+        getData()
+    }, []);
+
+    const getData =async () => {
+        try {
+           const res = await categoryService.fetchCategory('income');
+           setCategories(res.data.data);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const onUpdate = (category) => {
+        console.log('777777777',category)
+        setModalVisible(true)
+        setCategoryId(category.id);
+        setCategoryName(category.name);
+    }
     return (
-        <View style={styles.card}>
-        <View style={styles.categoryName}>
-            <Avatar
-            size="medium"
-            rounded
-            title="BP"
-            containerStyle={{backgroundColor:"#36BF59",marginRight: 2}}
-            />
-            <Text h4>Food</Text>
-        </View>
-        <View style={styles.categoryButton}>
-        <Icon
-            name="edit"
-            size={20}
-            color="black"
-            />
-            <Icon
-            name="trash-o"
-            size={20}
-            color="black"
-            />
-        </View>    
-    </View>
+        <>
+        {
+            categories?.map(category => {
+                return(
+                    <CategoryItem 
+                        key={category.id} 
+                        name={category.name} 
+                        id={category.id} 
+                        categoryType={category.category_type}
+                        onUpdate={() => onUpdate(category)}
+                    />
+                )
+            })
+        }
+        
+    <CategoryModal 
+        modalVisible={modalVisible} 
+        onClose={() => setModalVisible(false)}
+        categoryType='income'
+        categoryName={categoryName}
+        categoryId={categoryId}
+        />
+    <Button
+        icon={<Icon name='plus' color='#ffffff' />}
+        title='ADD' 
+        onPress={() => setModalVisible(true)}
+    />
+</>
     )
 }
 
 export default IncomeCategoryScreen;
 
-const styles = StyleSheet.create({
-    card: {
-        // flex: 1,
-        flexDirection: 'row',
-        justifyContent:'space-between',
-        alignItems:'center',
-        padding: 5,
-        marginVertical: 20,
-        marginHorizontal: 10,
-        borderWidth: 1,
-        borderRadius: 5
-    },
-    categoryName: {
-        flexDirection: 'row',
-        alignItems: 'center'
-    },
-    categoryButton: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-around'
-    }
-})

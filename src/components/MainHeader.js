@@ -4,7 +4,6 @@ import { Header } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome'; 
 
 const MainHeader = ({title,navigation}) => {
-  console.log('-------------',navigation)
     return (
         <Header
         leftComponent={

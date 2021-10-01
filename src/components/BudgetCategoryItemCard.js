@@ -2,10 +2,10 @@ import React from 'react';
 import {Text,Avatar} from 'react-native-elements';
 import { View,StyleSheet } from 'react-native';
 
-const BudgetCategoryItemCard = () => {
+const BudgetCategoryItemCard = ({date,title,amount}) => {
     return (
         <View>
-            <Text>10/18/2021</Text>
+            <Text style={styles.date}>10/18/2021</Text>
             <View style={styles.card}>
            
             <View style={styles.categoryName}>
@@ -15,10 +15,10 @@ const BudgetCategoryItemCard = () => {
                 title="BP"
                 containerStyle={{backgroundColor:"#00ff7f",marginRight: 2}}
                 />
-                <Text h5>Lunch</Text>
+                <Text h5>{title}</Text>
             </View>
             <View>
-                <Text h4>5,000</Text>
+                <Text h4>{amount}</Text>
             </View>    
         </View>
         </View>
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         justifyContent:'space-between',
         alignItems:'center',
         padding: 5,
-        marginVertical: 20,
+        marginVertical: 5,
         marginHorizontal: 10,
         borderWidth: 1,
         borderRadius: 5
@@ -44,5 +44,11 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
+    },
+    date:{
+        backgroundColor: 'gray',
+        margin:5,
+        borderRadius:5,
+        paddingHorizontal:10
     }
 })

@@ -1,20 +1,47 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import DetailsItemRow from '../components/DetailsItemRow';
 import { StyleSheet, View } from 'react-native';
 import {Card,Button} from 'react-native-elements';
 import HomeLayout from '../Layouts/HomeLayout';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import budgetService from '../services/budgetService';
 
-const BudgetCategoryDetailsScreen = ({navigation}) => {
+const BudgetCategoryDetailsScreen = ({route,navigation}) => {
+    const {itemId} = route.params;
+    const [item,setItem] = useState(null);
+    useEffect(() => {
+        getData()
+    }, []);
+
+    const getData = async () =>{
+        try {
+            const res = await budgetService.fetchItemDetails(itemId);
+            setItem(res.data.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const deleteItem = async () => {
+        try {
+            const res = await budgetService.deleteItem(itemId);
+            console.log('--------------',res?.data);
+            if(res?.data?.success){
+                navigation.replace('BudgetCategoryItem')
+              }
+        } catch (error) {
+            console.log(error)
+        }
+    }
     return (
         <HomeLayout title="Details" navigation={navigation}>
         <View>
             <Card >
-            <DetailsItemRow title="Income" value="5000"/>
+            <DetailsItemRow title={item?.budget_type} value={item?.amount}/>
 
-            <DetailsItemRow title="Category" value="Food"/>
+            <DetailsItemRow title="Category" value={item?.category}/>
 
-            <DetailsItemRow title="Title" value="House"/>
+            <DetailsItemRow title="Title" value={item?.title}/>
 
             <DetailsItemRow title="Date" value="2021/10/18"/>
             </Card>
@@ -29,6 +56,7 @@ const BudgetCategoryDetailsScreen = ({navigation}) => {
                     />
                 }
                 title="EDIT"
+                onPress = {() => navigation.navigate('BudgetAddingScreen',{item})}
                 />
 
             <Button
@@ -40,6 +68,7 @@ const BudgetCategoryDetailsScreen = ({navigation}) => {
                     />
                 }
                 title="DELETE"
+                onPress = {() => deleteItem()}
                 />
             </View>
         

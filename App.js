@@ -12,6 +12,7 @@ import BudgetViewScreen from './src/screens/BudgetViewScreen';
 import BudgetCategoryItemScreen from './src/screens/BudgetCategoryItemScreen';
 import BudgetCategoryDetailsScreen from './src/screens/BudgetCategoryDetailsScreen';
 import BudgetAddingScreens from './src/screens/BudgetAddingScreens';
+import { StateProvider } from './src/Store';
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -36,16 +37,14 @@ const NestedHomeScreens = () => {
       <Stack.Screen name="BudgetView" component={BudgetViewScreen} options={{ headerShown: false }}/>
       <Stack.Screen name="BudgetCategoryItem" component={BudgetCategoryItemScreen} options={{ headerShown: false }}/>
       <Stack.Screen name="BudgetCategoryDetails" component={BudgetCategoryDetailsScreen} options={{ headerShown: false }}/>
-      <Stack.Screen name="BudgetAddingScreen" component={BudgetAddingScreens} options={{headerShown:false}}/>
-      
-      
-      
+      <Stack.Screen name="BudgetAddingScreen" component={BudgetAddingScreens} options={{headerShown:false}}/> 
     </Stack.Navigator>
   )
 }
 
 export default function App() {
   return (
+    <StateProvider>
     <NavigationContainer>
         <Stack.Navigator
           initialRouteName="Login"
@@ -58,6 +57,7 @@ export default function App() {
           <Stack.Screen name="MainHome" component={TabScreen} options={{ headerShown: false }}/>
         </Stack.Navigator>
       </NavigationContainer>
+      </StateProvider>
   );
 }
 
