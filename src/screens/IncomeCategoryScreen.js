@@ -26,7 +26,6 @@ const IncomeCategoryScreen = () => {
     }
 
     const onUpdate = (category) => {
-        console.log('777777777',category)
         setModalVisible(true)
         setCategoryId(category.id);
         setCategoryName(category.name);
@@ -53,6 +52,7 @@ const IncomeCategoryScreen = () => {
         categoryType='income'
         categoryName={categoryName}
         categoryId={categoryId}
+        reloadHandler={getData}
         />
     <Button
         icon={<Icon name='plus' color='#ffffff' />}

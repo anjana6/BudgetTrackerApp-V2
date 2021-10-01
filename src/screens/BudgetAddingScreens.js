@@ -7,6 +7,7 @@ import moment from 'moment';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import axios from 'axios';
 import budgetService from '../services/budgetService';
+import categoryService from '../services/categoryService';
 
 
 const BudgetAddingScreens = ({route,navigation}) => {
@@ -17,6 +18,7 @@ const BudgetAddingScreens = ({route,navigation}) => {
   const [category,setCategory] = useState(null);
   const [title,setTitle] = useState(null);
   const [amount,setAmount] = useState(null);
+  const [categories,setCategories] = useState([]);
 
   useEffect(() => {
     if(route.params){
@@ -28,6 +30,16 @@ const BudgetAddingScreens = ({route,navigation}) => {
       setAmount(item.amount);
     }
   }, [])
+
+  const getCategories = async (categoryType) => {
+    try {
+      const res = await categoryService.fetchCategory(categoryType);
+      console.log('***********',res)
+      setCategories(res.data.data);
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const onSubmit = async () => {
     const payload = {
@@ -74,6 +86,11 @@ const BudgetAddingScreens = ({route,navigation}) => {
     setDate(currentDate);
   };
 
+  const onBudgetTypeHandler = (budgetType) => {
+    setBudgetType(budgetType);
+    getCategories(budgetType)
+  }
+
     return (
         <HomeLayout title="New Budget" navigation={navigation}>
             <View style={styles.container}>
@@ -81,7 +98,7 @@ const BudgetAddingScreens = ({route,navigation}) => {
               selectedValue={budgetType}
               style={{ height: 50}}
               mode="dropdown"
-              onValueChange={(itemValue, itemIndex) => setBudgetType(itemValue)}
+              onValueChange={(itemValue, itemIndex) => onBudgetTypeHandler(itemValue)}
             >
               <Picker.Item label="Income" value="income" />
               <Picker.Item label="Expense" value="expense" />
@@ -91,8 +108,12 @@ const BudgetAddingScreens = ({route,navigation}) => {
               style={{ height: 50}}
               onValueChange={(itemValue, itemIndex) => setCategory(itemValue)}
             >
-              <Picker.Item label="Food" value="food" />
-              <Picker.Item label="Rent" value="rent" />
+              {categories.map(cat => {
+                return (
+                  <Picker.Item key={cat.id} label={cat.name} value={cat.name} />
+                )
+              })}
+              
             </Picker>
             <View style={styles.date_time}>
               <Text onPress={() => showDatepicker() }>Date</Text>

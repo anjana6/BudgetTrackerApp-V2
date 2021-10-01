@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const httpService = axios.create({
-    baseURL: 'http://192.168.8.101:8000/api'
+    baseURL: 'http://192.168.8.100:8000/api'
 })
 
 httpService.interceptors.request.use(config => {

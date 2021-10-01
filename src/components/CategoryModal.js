@@ -4,7 +4,7 @@ import {Input,Button} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import categoryService from "../services/categoryService";
 
-const CategoryModal = ({modalVisible,onClose,categoryType,categoryName,categoryId}) => {
+const CategoryModal = ({modalVisible,onClose,categoryType,categoryName,categoryId,reloadHandler}) => {
     const [name, setName] = useState(categoryName);
     
     useEffect(() => {
@@ -16,11 +16,13 @@ const onSubmit = async () => {
         category_type: categoryType,
         name: name
     }
+    console.log(payload)
     try {
       if(categoryId){
         const res = await categoryService.updateCategory(categoryId,payload);
         if(res.data.success){
           onClose()
+          reloadHandler()
         }
       }else{
         const res = await categoryService.addCategory(payload);

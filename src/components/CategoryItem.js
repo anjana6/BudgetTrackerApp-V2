@@ -31,6 +31,7 @@ const CategoryItem = ({name,id,categoryType,onUpdate}) => {
             size={20}
             color="black"
             onPress={() => onUpdate()}
+            style={styles.buttonIcon}
             />
             <Icon
             name="trash-o"
@@ -68,6 +69,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-around'
+    },
+    buttonIcon:{
+        marginHorizontal: 10
     }
 })
 
