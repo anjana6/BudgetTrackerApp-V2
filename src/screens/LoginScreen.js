@@ -1,15 +1,38 @@
-import React from 'react';
-import { View,StyleSheet,Text,TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View,StyleSheet,Text,TouchableOpacity} from 'react-native';
 import {Input,Button} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import AuthLayout from '../Layouts/AuthLayout';
+import userService from '../services/userService';
+import * as SecureStore from 'expo-secure-store';
 
 const LoginScreen = ({navigation}) => {
+    const [email,setEmail] = useState(null);
+    const [password,setPassword] = useState(null);
+
+    const onSubmit = async () => {
+        try {
+          const payload = {
+            email,
+            password
+          }
+          const res = await userService.loginUser(payload);
+          
+          if(res.data.success){
+            console.log(res.data.data);
+            await SecureStore.setItemAsync('token', res.data.data)
+            navigation.navigate('MainHome');
+          }
+        } catch (error) {
+          console.log(error)
+        }
+      }
     return (
         <View style={styles.container}>
             <AuthLayout>
                 <Input
                     placeholder='Email'
+                    onChangeText={value => setEmail(value)}
                     leftIcon={
                         <Icon
                         name='user'
@@ -20,6 +43,7 @@ const LoginScreen = ({navigation}) => {
                 />
                 <Input
                 placeholder='Password'
+                onChangeText={value => setPassword(value)}
                 leftIcon={
                     <Icon
                     name='user'
@@ -31,7 +55,8 @@ const LoginScreen = ({navigation}) => {
                 />
                 <Button
                     title="Login"
-                    onPress={() => navigation.navigate('MainHome')}
+                    onPress={() => onSubmit()}
+                    // onPress={() => navigation.navigate('MainHome')}
                     />
         <View>
         <Text>Don't have an account?</Text>

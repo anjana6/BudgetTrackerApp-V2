@@ -18,6 +18,7 @@ const RegisterScreen = ({navigation}) => {
         password
       }
       const res = await userService.regiserUser(payload);
+      console.log(res.data.data);
       if(res.data.success){
         navigation.navigate('Login');
       }
