@@ -6,6 +6,8 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import httpServie from '../services/HttpService';
 import budgetService from '../services/budgetService';
 import {PieChart} from 'react-native-svg-charts';
+import LatestBudget from '../components/LatestBudget';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 
@@ -19,18 +21,17 @@ const HomeScreen = ({navigation}) => {
     const getDate = async () => {
         try {
            const res = await budgetService.fetchMonthlyBudget();
-           console.log(res);
            setBudget(res.data.data)
         } catch (error) {
             console.log(error);
         }
     }
 
-    const data = [{total: budget?.income, fill: '#600080'},{total: budget?.expense, fill: '#9900cc' }];
-
+    const data = [{total: budget?.income, fill: '#4AE215'},{total: budget?.expense, fill: '#15AAE2' }];
+    
     // const randomColor = () => ('#' + ((Math.random() * 0xffffff) << 0).toString(16) + '000000').slice(0, 7)
     // console.log(randomColor());
-
+    console.log(budget);
         const pieData = data
             .filter((value) => value.total > 0)
             .map((value, index) => ({
@@ -43,20 +44,25 @@ const HomeScreen = ({navigation}) => {
             }))
     return (
         <HomeLayout title="Home" navigation={navigation}>
+            <ScrollView>
             <View style={styles.container}>
-                <PieChart style={{ height: 150 }} data={pieData}/>
-                <View style={styles.charlebal}>
-                    <Text><Icon 
-                    name='stop' 
-                    size={15}
-                    color="green"
-                    />Income</Text>
-                    <Text><Icon 
-                    name='stop' 
-                    size={15}
-                    color="green"
-                    />Expense</Text>
-                </View>
+                { (budget?.income !== 0 || budget?.expense !== 0) && <>
+                    <PieChart style={{ height: 150 }} data={pieData}/>
+                    <View style={styles.charlebal}>
+                        <Text><Icon 
+                        name='stop' 
+                        size={15}
+                        color="#4AE215"
+                        />Income</Text>
+                        <Text><Icon 
+                        name='stop' 
+                        size={15}
+                        color="#15AAE2"
+                        />Expense</Text>
+                    </View>
+                    </>
+                }
+                
 
                 {/* <View style={styles.homeHead}>
                     <Text>Balance</Text>
@@ -132,7 +138,9 @@ const HomeScreen = ({navigation}) => {
                 onPress={() => navigation.navigate('BudgetAddingScreen')}
             />
             </View>
+            <LatestBudget/>
         </View>
+        </ScrollView>
         </HomeLayout>
     )
 }

@@ -7,9 +7,9 @@ import ExpenseCategoryScreen from './ExpenseCategoryScreen';
 
 const Tab = createMaterialTopTabNavigator();
 
-const CategorySetttingScreen = () => {
+const CategorySetttingScreen = ({navigation}) => {
     return (
-        <HomeLayout>
+        <HomeLayout title="CategorySetting" navigation={navigation}>
             <Tab.Navigator>
             <Tab.Screen name="Income" component={IncomeCategoryScreen}/>
             <Tab.Screen name="Expense" component={ExpenseCategoryScreen}/>

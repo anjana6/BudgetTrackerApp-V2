@@ -19,6 +19,7 @@ const IncomeCategoryScreen = () => {
     const getData =async () => {
         try {
            const res = await categoryService.fetchCategory('income');
+           console.log('**********',res.data.data)
            setCategories(res.data.data);
         } catch (error) {
             console.log(error)
@@ -41,6 +42,7 @@ const IncomeCategoryScreen = () => {
                         id={category.id} 
                         categoryType={category.category_type}
                         onUpdate={() => onUpdate(category)}
+                        reloadHandler={getData}
                     />
                 )
             })

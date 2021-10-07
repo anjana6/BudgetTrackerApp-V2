@@ -30,6 +30,15 @@ class BudgetService{
         const {selectedDate} = budgetState;
         return httpService.get(`/budget/category?startDate=${selectedDate.startDate}&&endDate=${selectedDate.endDate}`)
     }
+
+    fetchLatestBudget(){
+        return httpService.get('/budget/latest');
+    }
+
+    fetchBudgetTotal(budgetState){
+        const {selectedDate} = budgetState;
+        return httpService.get(`/budget/total?startDate=${selectedDate.startDate}&&endDate=${selectedDate.endDate}`)
+    }
 }
 
 export default new BudgetService();

@@ -22,8 +22,6 @@ const BudgetCategories = ({navigation}) => {
     }
 
     const onNext = (budgetType,category) => {
-        console.log(budgetType,category)
-        console.log(navigation)
         navigation.navigate('BudgetCategoryItem');
         budgetDispatch({
             type:  SELECT_CATEGORY,
@@ -37,7 +35,7 @@ const BudgetCategories = ({navigation}) => {
         {category?.income.map((category,index) => {
             return(
                 <TouchableOpacity key={index} onPress={() =>{onNext('income',category?.category)}}>
-            <BudgetViewCardItem name={category?.category}/>
+            <BudgetViewCardItem name={category?.category} budgetType="income"/>
             </TouchableOpacity>
             )
         })}
@@ -46,7 +44,7 @@ const BudgetCategories = ({navigation}) => {
             {category?.expense?.map((category,index) => {
             return(
                 <TouchableOpacity key={index} onPress={() =>{onNext('expense',category?.category)}}>
-            <BudgetViewCardItem name={category?.category}/>
+            <BudgetViewCardItem name={category?.category} budgetType="expense"/>
             </TouchableOpacity>
             )
         })}

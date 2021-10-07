@@ -27,7 +27,8 @@ const onSubmit = async () => {
       }else{
         const res = await categoryService.addCategory(payload);
        if(res.data.success){
-           onClose()
+           onClose();
+           reloadHandler()
        }
       }
        

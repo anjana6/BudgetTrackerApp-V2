@@ -1,8 +1,9 @@
 import React from 'react';
 import {Text,Avatar,Badge,Card} from 'react-native-elements';
 import {View,StyleSheet} from 'react-native';
+import { selectColor } from '../helpers/commenHelper';
 
-const BudgetViewCardItem = ({name}) => {
+const BudgetViewCardItem = ({name,budgetType}) => {
     return (
             <>
         {/* <View style={tailwind('flex-row justify-between items-center border-2 border-gray-500 border-opacity-25 p-1 my-1' )}>
@@ -26,8 +27,8 @@ const BudgetViewCardItem = ({name}) => {
                 <Avatar
                 size="medium"
                 rounded
-                title="BP"
-                containerStyle={{backgroundColor:"#36BF59",marginRight: 2}}
+                title={name.charAt(0)}
+                containerStyle={{backgroundColor:selectColor(budgetType),marginRight: 2}}
                 
                 />
                 <Text h4>{name}</Text>

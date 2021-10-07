@@ -3,6 +3,7 @@ import {View,StyleSheet,TouchableOpacity} from 'react-native';
 import {Text,Button,Input} from 'react-native-elements';
 import AuthLayout from '../Layouts/AuthLayout';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import MIcon from 'react-native-vector-icons/MaterialIcons';
 import userService from '../services/userService';
 
 const RegisterScreen = ({navigation}) => {
@@ -31,6 +32,7 @@ const RegisterScreen = ({navigation}) => {
             <AuthLayout>
             <Text h3>Create Account</Text>
                 <Input
+                value={name}
         placeholder='UserName'
         onChangeText={value => setName(value)}
         leftIcon={
@@ -42,22 +44,24 @@ const RegisterScreen = ({navigation}) => {
           }
         />
         <Input
+        value={email}
         placeholder='Email'
         onChangeText={value => setEmail(value)}
         leftIcon={
-            <Icon
-              name='user'
+            <MIcon
+              name='email'
               size={24}
               color='black'
             />
           }
         />
         <Input
+        value={password}
         placeholder='Password'
         onChangeText={value => setPassword(value)}
         leftIcon={
             <Icon
-              name='user'
+              name='lock'
               size={24}
               color='black'
             />
@@ -72,7 +76,7 @@ const RegisterScreen = ({navigation}) => {
         <View>
         <Text>Already have an account</Text>
         <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-          <Text>Login</Text>
+          <Text style={styles.text}>Login</Text>
         </TouchableOpacity>
         </View>
             </AuthLayout>
@@ -91,4 +95,8 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       marginHorizontal: 20
     },
+    text: {
+      textAlign: 'center',
+      color: 'blue'
+    }
   });

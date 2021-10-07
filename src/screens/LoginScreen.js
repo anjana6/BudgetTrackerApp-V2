@@ -5,10 +5,13 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import AuthLayout from '../Layouts/AuthLayout';
 import userService from '../services/userService';
 import * as SecureStore from 'expo-secure-store';
+import MIcon from 'react-native-vector-icons/MaterialIcons';
+import { setToken } from '../services/storageService';
 
 const LoginScreen = ({navigation}) => {
     const [email,setEmail] = useState(null);
     const [password,setPassword] = useState(null);
+    const [error,setError] = useState('');
 
     const onSubmit = async () => {
         try {
@@ -19,49 +22,55 @@ const LoginScreen = ({navigation}) => {
           const res = await userService.loginUser(payload);
           
           if(res.data.success){
-            console.log(res.data.data);
-            await SecureStore.setItemAsync('token', res.data.data)
+            setToken(res.data.data);
+            setEmail(null);
+            setPassword(null);
+            setError('')
             navigation.navigate('MainHome');
           }
         } catch (error) {
-          console.log(error)
+          setError(error.data.message);
         }
       }
     return (
         <View style={styles.container}>
             <AuthLayout>
                 <Input
+                value={email}
                     placeholder='Email'
                     onChangeText={value => setEmail(value)}
                     leftIcon={
-                        <Icon
-                        name='user'
+                        <MIcon
+                        name='email'
                         size={24}
                         color='black'
                         />
                         }
                 />
                 <Input
+                value={password}
                 placeholder='Password'
                 onChangeText={value => setPassword(value)}
                 leftIcon={
                     <Icon
-                    name='user'
+                    name='lock'
                     size={24}
                     color='black'
                     />
                 }
                 secureTextEntry={true}
                 />
+                <Text style={styles.error}>{error}</Text>
+                <View style={styles.button}>
                 <Button
                     title="Login"
                     onPress={() => onSubmit()}
-                    // onPress={() => navigation.navigate('MainHome')}
                     />
+                    </View>
         <View>
         <Text>Don't have an account?</Text>
         <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-          <Text>Create Account</Text>
+          <Text style={styles.text}>Create Account</Text>
         </TouchableOpacity>
         </View>
             </AuthLayout>
@@ -80,5 +89,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginHorizontal: 20
   },
+  text: {
+    textAlign: 'center',
+    color: '#16087A'
+  },
+  button: {
+    width: 150,
+    marginVertical:5
+  },
+  error:{
+    color: 'red'
+  }
   
 });

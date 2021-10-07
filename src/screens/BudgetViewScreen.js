@@ -1,4 +1,4 @@
-import React, { useState,useContext } from 'react'
+import React, { useState,useContext, useEffect } from 'react'
 import HomeLayout from '../Layouts/HomeLayout';
 import {Card,Text} from 'react-native-elements';
 import {View,TouchableOpacity,ScrollView,StyleSheet} from 'react-native';
@@ -10,6 +10,7 @@ import {GloableContext} from '../Store';
 import { SELECT_CATEGORY } from '../Store/reducers/type';
 import {PieChart} from 'react-native-svg-charts';
 import BudgetCategories from '../components/BudgetCategories';
+import budgetService from '../services/budgetService';
 
 
 const BudgetViewScreen = ({route,navigation}) => {
@@ -17,9 +18,24 @@ const BudgetViewScreen = ({route,navigation}) => {
     const [endDate,setEndDate] = useState(moment().endOf('month'));
     const [displayedDate,setDisplayDate] = useState(moment());
    const [openDate,setOpenDate] = useState(false);
+   const [budgetTotal,setBudgetTotal] = useState(null);
 
     const {budget} = route.params;
     const {budgetDispatch,budgetState} = useContext(GloableContext);
+
+    useEffect(() => {
+       getData()
+    }, [])
+
+    const getData = async () => {
+        try {
+            const res = await budgetService.fetchBudgetTotal(budgetState)
+            console.log('55555555555555555555',res.data.data);
+            setBudgetTotal(res.data.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     // const setDates = (dates) => {
     //     // console.log(dates)
@@ -43,7 +59,7 @@ const BudgetViewScreen = ({route,navigation}) => {
         })
     }
 
-    const data = [{total:50, fill: '#600080'},{total:50, fill: '#9900cc' }];
+    const data = [{total: budgetTotal?.income, fill: '#4AE215'},{total: budgetTotal?.expense, fill: '#15AAE2' }];
 
     // const randomColor = () => ('#' + ((Math.random() * 0xffffff) << 0).toString(16) + '000000').slice(0, 7)
     // console.log(randomColor());
@@ -88,12 +104,12 @@ const BudgetViewScreen = ({route,navigation}) => {
                 </Card>
                 </> */}
                 <View>
-                    <Text h4 style={styles.currency}>Balance:5000</Text>
+                    <Text h4 style={styles.currency}>Balance:{budgetTotal?.income - budgetTotal?.expense}</Text>
                     <Card.Divider/>
                     <PieChart style={{ height: 150 }} data={pieData}/>
                     <View style={styles.expense_income}>
-                    <Text h5>Income:50,000</Text>
-                    <Text h5>Expnese:50,000</Text>
+                    <Text h5>Income:{budgetTotal?.income}</Text>
+                    <Text h5>Expnese:{budgetTotal?.expense}</Text>
                     </View>
                 </View>
             

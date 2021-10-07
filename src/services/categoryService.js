@@ -11,6 +11,7 @@ class CategoryService{
     }
 
     deleteItem(itemId){
+        console.log('-------',itemId)
         return httpService.delete(`/category/${itemId}`)
     }
 

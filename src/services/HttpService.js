@@ -1,16 +1,16 @@
 import axios from 'axios';
 import * as SecureStore from 'expo-secure-store';
+import { getToken } from './storageService';
 
 const httpService = axios.create({
-    baseURL: 'http://192.168.8.101:8000/api'
+    baseURL: 'http://192.168.8.100:8000/api'
 })
 
 httpService.interceptors.request.use(async config => {
-
     config.headers = {
-        authorization: await SecureStore.getItemAsync('token'),
+        authorization: await getToken(),
       };
-      console.log(config)
+
     return Promise.resolve(config)
 })
 

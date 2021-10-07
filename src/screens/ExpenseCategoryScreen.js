@@ -41,6 +41,7 @@ const ExpenseCategoryScreen = () => {
                         id={category.id} 
                         categoryType={category.category_type}
                         onUpdate={() => onUpdate(category)}
+                        reloadHandler={getData}
                     />
                 )
             })

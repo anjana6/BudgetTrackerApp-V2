@@ -27,7 +27,7 @@ const BudgetCategoryItemScreen = ({route,navigation}) => {
     }
 
     return (
-        <HomeLayout navigation={navigation}>
+        <HomeLayout navigation={navigation} title="Budget Item">
              <ScrollView>  
         <View>
             <Card>
@@ -47,6 +47,7 @@ const BudgetCategoryItemScreen = ({route,navigation}) => {
                             date = {item.date}
                             title = {item.title}
                             amount = {item.amount}
+                            budgetType={item.budget_type}
                         />
                     </TouchableOpacity>
                 )

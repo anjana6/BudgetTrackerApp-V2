@@ -1,8 +1,9 @@
 import React from 'react';
 import {Text,Avatar} from 'react-native-elements';
 import { View,StyleSheet } from 'react-native';
+import { selectColor } from '../helpers/commenHelper';
 
-const BudgetCategoryItemCard = ({date,title,amount}) => {
+const BudgetCategoryItemCard = ({date,title,amount,budgetType}) => {
     return (
         <View>
             <Text style={styles.date}>10/18/2021</Text>
@@ -12,8 +13,8 @@ const BudgetCategoryItemCard = ({date,title,amount}) => {
                 <Avatar
                 size="medium"
                 rounded
-                title="BP"
-                containerStyle={{backgroundColor:"#00ff7f",marginRight: 2}}
+                title={title.charAt(0)}
+                containerStyle={{backgroundColor:selectColor(budgetType),marginRight: 2}}
                 />
                 <Text h5>{title}</Text>
             </View>

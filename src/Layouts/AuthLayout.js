@@ -8,7 +8,7 @@ const AuthLayout = ({children}) => {
            <View style={styles.header}>
            <Text h3 style={styles.headerTitle}>Budget Tracker</Text>
             <Image
-            source={{ uri: "https://wallpaperaccess.com/full/317501.jpg" }}
+            source={require('../images/income.jpg')}
             style={{ width: 200, height: 200 }}
             />
            </View>
@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
       marginBottom: 20
     },
     headerTitle: {
-      marginBottom: 10
+      marginBottom: 10,
+      color: '#16087A'
     }
   });

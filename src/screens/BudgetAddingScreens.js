@@ -34,7 +34,6 @@ const BudgetAddingScreens = ({route,navigation}) => {
   const getCategories = async (categoryType) => {
     try {
       const res = await categoryService.fetchCategory(categoryType);
-      console.log('***********',res)
       setCategories(res.data.data);
     } catch (error) {
       console.log(error)

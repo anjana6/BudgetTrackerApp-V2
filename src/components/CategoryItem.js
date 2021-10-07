@@ -2,13 +2,17 @@ import React,{useEffect, useState} from 'react';
 import {View,StyleSheet,Button} from 'react-native';
 import { Avatar,Text } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { selectColor } from '../helpers/commenHelper';
 import categoryService from '../services/categoryService';
 import CategoryModal from './CategoryModal';
 
-const CategoryItem = ({name,id,categoryType,onUpdate}) => {
+const CategoryItem = ({name,id,categoryType,onUpdate,reloadHandler}) => {
     const deleteItem = async () => {
         try {
             const res = await categoryService.deleteItem(id);
+            if(res.data.success){
+                reloadHandler()
+            }
         } catch (error) {
             console.log(error)
         }
@@ -20,8 +24,8 @@ const CategoryItem = ({name,id,categoryType,onUpdate}) => {
             <Avatar
             size="small"
             rounded
-            title="BP"
-            containerStyle={{backgroundColor:"#36BF59",marginRight: 2}}
+            title={name.charAt(0) }
+            containerStyle={{backgroundColor:selectColor(categoryType),marginRight: 2}}
             />
             <Text h5>{name}</Text>
         </View>

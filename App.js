@@ -13,6 +13,7 @@ import BudgetCategoryItemScreen from './src/screens/BudgetCategoryItemScreen';
 import BudgetCategoryDetailsScreen from './src/screens/BudgetCategoryDetailsScreen';
 import BudgetAddingScreens from './src/screens/BudgetAddingScreens';
 import { StateProvider } from './src/Store';
+import { getToken } from './src/services/storageService';
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
