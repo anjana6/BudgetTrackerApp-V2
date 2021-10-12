@@ -25,7 +25,6 @@ const BudgetCategoryDetailsScreen = ({route,navigation}) => {
     const deleteItem = async () => {
         try {
             const res = await budgetService.deleteItem(itemId);
-            console.log('--------------',res?.data);
             if(res?.data?.success){
                 navigation.replace('BudgetCategoryItem')
               }

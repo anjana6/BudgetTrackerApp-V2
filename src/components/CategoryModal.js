@@ -42,13 +42,8 @@ const onSubmit = async () => {
         animationType="slide"
         transparent={true}
         visible={modalVisible}
-        // onRequestClose={() => {
-        //   Alert.alert("Modal has been closed.");
-        //   setModalVisible(!modalVisible);
-        // }}
       >
         <View style={styles.centeredView}>
-        
           <View style={styles.modalView}>
               <View style={styles.closeIcon}>
               <Icon name='times' color='black' size={20} onPress={onClose}/>
@@ -60,26 +55,13 @@ const onSubmit = async () => {
                 onChangeText={value => setName(value)}
                 />
             <Button
-    icon={<Icon name='plus' color='#ffffff' />}
-    title='ADD'
-    onPress={onSubmit}
-    />
-    
-            {/* <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}
-            >
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </Pressable> */}
+              icon={<Icon name='plus' color='#ffffff' />}
+              title='ADD'
+              onPress={onSubmit}
+            />
           </View>
         </View>
       </Modal>
-      {/* <Pressable
-        style={[styles.button, styles.buttonOpen]}
-        onPress={() => setModalVisible(true)}
-      >
-        <Text style={styles.textStyle}>Show Modal</Text>
-      </Pressable> */}
     </View>
   );
 };

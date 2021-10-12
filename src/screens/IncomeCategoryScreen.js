@@ -1,6 +1,5 @@
 import React,{useEffect, useState} from 'react';
-import {View,StyleSheet,Button} from 'react-native';
-import { Avatar,Text } from 'react-native-elements';
+import {Button} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import CategoryModal from '../components/CategoryModal';
 import CategoryItem from '../components/CategoryItem';
@@ -19,7 +18,6 @@ const IncomeCategoryScreen = () => {
     const getData =async () => {
         try {
            const res = await categoryService.fetchCategory('income');
-           console.log('**********',res.data.data)
            setCategories(res.data.data);
         } catch (error) {
             console.log(error)

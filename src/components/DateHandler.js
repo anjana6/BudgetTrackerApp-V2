@@ -1,5 +1,5 @@
 import React,{useState,useContext} from 'react'
-import {Text,View,Button} from 'react-native';
+import {Text} from 'react-native';
 import { GloableContext } from '../Store';
 import DateRangePicker from "react-native-daterange-picker";
 import moment from 'moment';
@@ -34,25 +34,22 @@ const DateHandler = () => {
       };
     return (
         <> 
-        
             <DateRangePicker
-        onChange={setDates}
-        endDate={budgetState?.selectedDate?.endDate}
-        startDate={budgetState?.selectedDate?.startDate}
-        displayedDate={displayedDate}
-        // open = {openDate}
-        range
->
-  <Text >
+                onChange={setDates}
+                endDate={budgetState?.selectedDate?.endDate}
+                startDate={budgetState?.selectedDate?.startDate}
+                displayedDate={displayedDate}
+                range
+            >
+                <Text >
                     <Icon 
-                    name='calendar-alt' 
-                    size={20}
-                    color="green"
-                    /></Text>
-</DateRangePicker>  
-</>
-
-
+                        name='calendar-alt' 
+                        size={20}
+                        color="green"
+                    />
+                </Text>
+            </DateRangePicker>  
+        </>
     )
 }
 

@@ -33,52 +33,52 @@ const RegisterScreen = ({navigation}) => {
             <Text h3>Create Account</Text>
                 <Input
                 value={name}
-        placeholder='UserName'
-        onChangeText={value => setName(value)}
-        leftIcon={
-            <Icon
-              name='user'
-              size={24}
-              color='black'
-            />
-          }
-        />
-        <Input
-        value={email}
-        placeholder='Email'
-        onChangeText={value => setEmail(value)}
-        leftIcon={
-            <MIcon
-              name='email'
-              size={24}
-              color='black'
-            />
-          }
-        />
-        <Input
-        value={password}
-        placeholder='Password'
-        onChangeText={value => setPassword(value)}
-        leftIcon={
-            <Icon
-              name='lock'
-              size={24}
-              color='black'
-            />
-          }
-          secureTextEntry={true}
-        />
+                placeholder='UserName'
+                onChangeText={value => setName(value)}
+                leftIcon={
+                    <Icon
+                      name='user'
+                      size={24}
+                      color='black'
+                    />
+                  }
+                />
+                <Input
+                value={email}
+                placeholder='Email'
+                onChangeText={value => setEmail(value)}
+                leftIcon={
+                    <MIcon
+                      name='email'
+                      size={24}
+                      color='black'
+                    />
+                  }
+                />
+                <Input
+                value={password}
+                placeholder='Password'
+                onChangeText={value => setPassword(value)}
+                leftIcon={
+                    <Icon
+                      name='lock'
+                      size={24}
+                      color='black'
+                    />
+                  }
+                  secureTextEntry={true}
+                />
 
-        <Button
-        title="Create Account"
-        onPress={() => onSubmit()}
-        />
-        <View>
-        <Text>Already have an account</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-          <Text style={styles.text}>Login</Text>
-        </TouchableOpacity>
-        </View>
+                <Button
+                title="Create Account"
+                onPress={() => onSubmit()}
+                />
+                <View>
+                <Text>Already have an account</Text>
+                <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+                  <Text style={styles.text}>Login</Text>
+                </TouchableOpacity>
+                </View>
             </AuthLayout>
 
         </View>

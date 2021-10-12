@@ -4,7 +4,6 @@ import {Input,Button} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import AuthLayout from '../Layouts/AuthLayout';
 import userService from '../services/userService';
-import * as SecureStore from 'expo-secure-store';
 import MIcon from 'react-native-vector-icons/MaterialIcons';
 import { setToken } from '../services/storageService';
 

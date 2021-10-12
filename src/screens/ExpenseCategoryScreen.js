@@ -1,6 +1,5 @@
 import React,{useEffect, useState} from 'react';
-import {View,StyleSheet,Button} from 'react-native';
-import { Avatar,Text } from 'react-native-elements';
+import {Button} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import CategoryModal from '../components/CategoryModal';
 import CategoryItem from '../components/CategoryItem';
@@ -47,19 +46,19 @@ const ExpenseCategoryScreen = () => {
             })
         }
         
-    <CategoryModal 
-        modalVisible={modalVisible} 
-        onClose={() => setModalVisible(false)}
-        categoryType='expense'
-        categoryName={categoryName}
-        categoryId={categoryId}
-        reloadHandler={getData}
+        <CategoryModal 
+            modalVisible={modalVisible} 
+            onClose={() => setModalVisible(false)}
+            categoryType='expense'
+            categoryName={categoryName}
+            categoryId={categoryId}
+            reloadHandler={getData}
+            />
+        <Button
+            icon={<Icon name='plus' color='#ffffff' />}
+            title='ADD' 
+            onPress={() => setModalVisible(true)}
         />
-    <Button
-        icon={<Icon name='plus' color='#ffffff' />}
-        title='ADD' 
-        onPress={() => setModalVisible(true)}
-    />
 </>
     )
 }

@@ -3,9 +3,7 @@ import HomeLayout from '../Layouts/HomeLayout';
 import {View,StyleSheet,TouchableOpacity} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import {Input,Button,Text} from 'react-native-elements';
-import moment from 'moment';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import axios from 'axios';
 import budgetService from '../services/budgetService';
 import categoryService from '../services/categoryService';
 

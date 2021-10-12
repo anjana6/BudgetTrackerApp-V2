@@ -1,9 +1,8 @@
 import React,{useEffect,useState} from 'react'
 import HomeLayout from '../Layouts/HomeLayout';
-import {Text,Image,Card,Button} from 'react-native-elements';
+import {Text,Card,Button} from 'react-native-elements';
 import {View,TouchableOpacity,StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import httpServie from '../services/HttpService';
 import budgetService from '../services/budgetService';
 import {PieChart} from 'react-native-svg-charts';
 import LatestBudget from '../components/LatestBudget';
@@ -28,9 +27,6 @@ const HomeScreen = ({navigation}) => {
     }
 
     const data = [{total: budget?.income, fill: '#4AE215'},{total: budget?.expense, fill: '#15AAE2' }];
-    
-    // const randomColor = () => ('#' + ((Math.random() * 0xffffff) << 0).toString(16) + '000000').slice(0, 7)
-    // console.log(randomColor());
     console.log(budget);
         const pieData = data
             .filter((value) => value.total > 0)
@@ -62,46 +58,6 @@ const HomeScreen = ({navigation}) => {
                     </View>
                     </>
                 }
-                
-
-                {/* <View style={styles.homeHead}>
-                    <Text>Balance</Text>
-                    <Text h3>aa</Text>
-                   
-                </View>
-            <View>
-            <TouchableOpacity onPress={() => navigation.navigate('BudgetView',{
-                budget: 'Income',
-            })}>
-                <Card>
-                <Card.Title>
-                    <Icon 
-                    name='arrow-alt-circle-down' 
-                    size={25}
-                    color="green"
-                    />
-                    <Text h4>INCOME</Text>
-                    
-                </Card.Title>
-                <Card.Divider/>
-                <Text h4 style={styles.currency}>aa</Text>
-                </Card>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('BudgetView',{
-                budget: 'Expense',
-            })}>
-                <Card>
-                <Card.Title><Icon 
-                    name='arrow-alt-circle-up' 
-                    size={25}
-                    color="red"
-                    />
-                    <Text h4>EXPENCE</Text></Card.Title>
-                <Card.Divider/>
-                <Text h4 style={styles.currency}>aa</Text>
-                </Card>
-               </TouchableOpacity> 
-            </View> */}
              <TouchableOpacity onPress={() => navigation.navigate('BudgetView',{
                 budget: 'Expense',
             })}>
@@ -152,8 +108,6 @@ const styles = StyleSheet.create({
       flex: 1,
       backgroundColor: '#fff',
       padding:5
-    //   alignItems: 'center',
-    //   justifyContent: 'center',
     },
     homeHead: {
         alignItems: 'center'
@@ -166,7 +120,6 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     expense_income: {
-        // flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginVertical: 20

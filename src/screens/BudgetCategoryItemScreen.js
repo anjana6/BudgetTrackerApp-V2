@@ -6,8 +6,7 @@ import {Text,Card} from 'react-native-elements';
 import budgetService from '../services/budgetService';
 import { GloableContext } from '../Store';
 
-const BudgetCategoryItemScreen = ({route,navigation}) => {
-    // const {budget,category,startDate,endDate} = route.params;
+const BudgetCategoryItemScreen = ({navigation}) => {
     const [budgetItem,setBudgetItem] = useState([]);
     const [total,setTotal] = useState('');
     const {budgetState} = useContext(GloableContext)

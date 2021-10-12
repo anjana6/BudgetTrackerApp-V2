@@ -3,7 +3,7 @@ import * as SecureStore from 'expo-secure-store';
 import { getToken } from './storageService';
 
 const httpService = axios.create({
-    baseURL: 'http://192.168.8.100:8000/api'
+    baseURL: 'https://budgety-track-app.herokuapp.com/api'
 })
 
 httpService.interceptors.request.use(async config => {

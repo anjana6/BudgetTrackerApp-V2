@@ -1,6 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from './src/screens/LoginScreen';
@@ -13,7 +11,6 @@ import BudgetCategoryItemScreen from './src/screens/BudgetCategoryItemScreen';
 import BudgetCategoryDetailsScreen from './src/screens/BudgetCategoryDetailsScreen';
 import BudgetAddingScreens from './src/screens/BudgetAddingScreens';
 import { StateProvider } from './src/Store';
-import { getToken } from './src/services/storageService';
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -24,10 +21,6 @@ const TabScreen = () => {
       <Tab.Screen name="Home" component={NestedHomeScreens} />
       <Tab.Screen name="Settings" component={CategorySetttingScreen} />
     </Tab.Navigator>
-    // <Tab.Navigator>
-    //   <Tab.Screen name="Home" component={NestedHome} options={{ headerShown: false }}/>
-    //   <Tab.Screen name="CategorySetting" component={CategorySettingScreen} options={{ headerShown: false }}/>
-    // </Tab.Navigator>
   )
 }
 
@@ -61,12 +54,3 @@ export default function App() {
       </StateProvider>
   );
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });

@@ -6,30 +6,14 @@ import { selectColor } from '../helpers/commenHelper';
 const BudgetViewCardItem = ({name,budgetType}) => {
     return (
             <>
-        {/* <View style={tailwind('flex-row justify-between items-center border-2 border-gray-500 border-opacity-25 p-1 my-1' )}>
-            <View style={tailwind('flex flex-row items-center')}>
-                <Avatar
-                size="medium"
-                rounded
-                title="BP"
-                containerStyle={{backgroundColor:"#36BF59",marginRight: 2}}
-                
-                />
-                <Text h4>Food</Text>
-                <Badge value="2" status="primary" />
-            </View>
-            <View>
-                <Text h4>5,000</Text>
-            </View>    
-        </View> */}
          <View style={styles.card}>
             <View style={styles.categoryName}>
                 <Avatar
-                size="medium"
-                rounded
-                title={name.charAt(0)}
-                containerStyle={{backgroundColor:selectColor(budgetType),marginRight: 2}}
-                
+                    size="medium"
+                    rounded
+                    title={name.charAt(0)}
+                    containerStyle={{backgroundColor:selectColor(budgetType),marginRight: 2}}
+                    
                 />
                 <Text h4>{name}</Text>
             </View>

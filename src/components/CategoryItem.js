@@ -1,10 +1,9 @@
-import React,{useEffect, useState} from 'react';
-import {View,StyleSheet,Button} from 'react-native';
+import React from 'react';
+import {View,StyleSheet} from 'react-native';
 import { Avatar,Text } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { selectColor } from '../helpers/commenHelper';
 import categoryService from '../services/categoryService';
-import CategoryModal from './CategoryModal';
 
 const CategoryItem = ({name,id,categoryType,onUpdate,reloadHandler}) => {
     const deleteItem = async () => {
@@ -22,31 +21,29 @@ const CategoryItem = ({name,id,categoryType,onUpdate,reloadHandler}) => {
         <View style={styles.card}>
         <View style={styles.categoryName}>
             <Avatar
-            size="small"
-            rounded
-            title={name.charAt(0) }
-            containerStyle={{backgroundColor:selectColor(categoryType),marginRight: 2}}
+                size="small"
+                rounded
+                title={name.charAt(0) }
+                containerStyle={{backgroundColor:selectColor(categoryType),marginRight: 2}}
             />
             <Text h5>{name}</Text>
         </View>
         <View style={styles.categoryButton}>
-        <Icon
-            name="edit"
-            size={20}
-            color="black"
-            onPress={() => onUpdate()}
-            style={styles.buttonIcon}
+            <Icon
+                name="edit"
+                size={20}
+                color="black"
+                onPress={() => onUpdate()}
+                style={styles.buttonIcon}
             />
             <Icon
-            name="trash-o"
-            size={20}
-            color="black"
-            onPress={() => deleteItem()}
+                name="trash-o"
+                size={20}
+                color="black"
+                onPress={() => deleteItem()}
             />
-        </View>    
-        
+        </View>     
     </View>
-
     </>
     )
 }
@@ -55,15 +52,12 @@ export default CategoryItem;
 
 const styles = StyleSheet.create({
     card: {
-        // flex: 1,
         flexDirection: 'row',
         justifyContent:'space-between',
         alignItems:'center',
         padding: 5,
         marginVertical: 5,
         marginHorizontal: 10,
-        // borderWidth: 1,
-        // borderRadius: 5
     },
     categoryName: {
         flexDirection: 'row',

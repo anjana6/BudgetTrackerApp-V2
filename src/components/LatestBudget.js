@@ -3,7 +3,6 @@ import {Text,Avatar} from 'react-native-elements';
 import { View,StyleSheet } from 'react-native';
 import budgetService from '../services/budgetService';
 import moment from 'moment';
-import { color } from 'react-native-elements/dist/helpers';
 import { selectColor } from '../helpers/commenHelper';
 
 const LatestBudget = () => {
@@ -22,7 +21,6 @@ const LatestBudget = () => {
     }
     return (
         <>
-            {/* <Text style={styles.date}>10/18/2021</Text> */}
             {budgets?.map(budget => {
                 return (
                     <View key={budget.id}>
